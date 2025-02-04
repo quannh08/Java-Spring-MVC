@@ -21,8 +21,8 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage() {
-        String test = userService.hanldeHello();
-        return "eric.html";
+        String test = userService.handleHello();
+        return "hello";
     }
 }
 
