@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @RequestMapping("/admin/user")
+    @RequestMapping("/")
     public String getHomePage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
@@ -31,6 +31,7 @@ public class UserController {
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String getUserPage(Model model, @ModelAttribute("newUser") User newUser) {
         System.out.println("run here" + newUser);
+        this.userService.handleSave(newUser);
         return "hello";
     }
 }
